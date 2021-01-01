@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import firebase from 'firebase'
 import Post from './Post/Post'
+import { db } from '../../firebase'
 
 import CreateIcon from '@material-ui/icons/Create'
 import ImageIcon from '@material-ui/icons/Image'
@@ -13,18 +15,41 @@ import './Feed.css'
 
 const Feed = () => {
     const [posts, setPosts] = useState([])
+    const [input, setInput] = useState('')
+    
+    useEffect(() => {
+        db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => (
+            setPosts(snapshot.docs.map(doc => (
+                {
+                    id: doc.id,
+                    data: doc.data()
+                }
+            )))
+        ))
+    }, [])
+
 
     const sendPost = e => {
         e.preventDefault()
+        
+        db.collection('posts').add({
+            name: 'Alex Kimeu',
+            description: "The hell",
+            message: input, 
+            photoUrl: '',
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        })
+
+        setInput('')
     }
 
-    return (
+    return ( 
         <div className="feed">
             <div className="feed__inputContainer">
                 <div className="feed__input">
                     <CreateIcon />
                     <form>
-                        <input type="text" />
+                        <input type="text" onChange={e => setInput(e.target.value)} value={ input } />
                         <button type="submit" onClick={sendPost}>Send</button>
                     </form>
                 </div>
@@ -36,23 +61,14 @@ const Feed = () => {
                 </div>
             </div>  
             
-            {posts.map(post => <Post />)}
-
+            {posts.map(({id, data: { name, description, message, photoUrl }}) =>(
             <Post 
-                name="Alex Kimeu" 
-                description="Happy New Year" 
-                message="The world breaks everyone, & afterwards, many are strong at the broken places."
-            />
-            <Post 
-                name="Alex Kimeu" 
-                description="Happy New Year" 
-                message="The world breaks everyone, & afterwards, many are strong at the broken places."
-            />
-            <Post 
-                name="Alex Kimeu" 
-                description="Happy New Year" 
-                message="The world breaks everyone, & afterwards, many are strong at the broken places."
-            />
+                key={id}
+                name={name} 
+                description={description} 
+                message={message} 
+                photoUrl={photoUrl}
+            />))}
             
         </div>
     )
