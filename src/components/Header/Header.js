@@ -1,6 +1,6 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { logout } from '../../features/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout, selectUser } from '../../features/userSlice'
 import { auth } from '../../firebase'
 
 import { HeaderOption } from '../../components'
@@ -18,6 +18,7 @@ import './Header.css'
 
 const Header = () => {
     const dispatch = useDispatch()
+    const user = useSelector(selectUser)
 
     const logoutOfApp = () => {
         dispatch(logout())
@@ -40,11 +41,12 @@ const Header = () => {
                 <HeaderOption Icon={BusinessCenterIcon} title="Jobs" />
                 <HeaderOption Icon={ChatIcon} title="Messaging" />
                 <HeaderOption Icon={NotificationsIcon} title="Notifications" />
-                < HeaderOption 
+                {user && <HeaderOption
                     avatar
-                    title="me" 
+                    title="me"
                     onClick={logoutOfApp}
                 />
+                }
                 
             </div>
         </div>

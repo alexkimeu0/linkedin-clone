@@ -7,14 +7,15 @@
 
 .login > img {
     object-fit: contain;
-    height: 70px;
-    margin: 20px 0;
+    height: 80px;
+    margin: 10px 0;
 }
 
 .login > form {
     display: flex;
     flex-direction: column;
 }
+
 
 .login > form > input, .login > form > button {
     width: 350px;

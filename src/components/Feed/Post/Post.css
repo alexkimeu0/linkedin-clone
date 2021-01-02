@@ -18,6 +18,10 @@
     font-size: 15px;
 }
 
+.post__info > h2 > span {
+    float: right;
+}
+
 .post__info > p {
     color: gray;
     font-size: 12px;
@@ -25,6 +29,12 @@
 
 .post__body {
     overflow-wrap: anywhere;
+}
+
+.post__bodyDate {
+    font-size: small;
+    margin-top: 1rem;
+    color: gray;
 }
 
 .post__buttons {

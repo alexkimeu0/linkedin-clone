@@ -68,12 +68,13 @@ const Feed = () => {
             </div>  
             
             <FlipMove>
-            {posts.map(({id, data: { name, description, message, photoUrl }}) =>(
+            {posts.map(({id, data: { name, description, message, photoUrl, timestamp }}) =>(
             <Post 
                 key={id}
                 name={name} 
                 description={description} 
                 message={message} 
+                timestamp={timestamp}
                 photoUrl={photoUrl}
                 />))}
             </FlipMove>

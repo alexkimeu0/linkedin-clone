@@ -52,7 +52,7 @@ const Login = () => {
 
     return (
         <div className="login">
-            <img src="https://static-exp1.licdn.com/sc/h/95o6rrc5ws6mlw6wqzy0xgj7y" alt="Login" />     
+            <img src="https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo-700x394.png" alt="Login" />     
             
             <form>
                 <input 

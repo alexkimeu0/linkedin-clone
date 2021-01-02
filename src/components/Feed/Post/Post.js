@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 import { Avatar } from '@material-ui/core'
+import moment from 'moment'
 import InputOption from '../InputOption/InputOption'
 
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined'
@@ -11,7 +12,7 @@ import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined'
 
 import './Post.css'
 
-const Post = forwardRef(({ name, description, message, photoUrl }, ref) => {
+const Post = forwardRef(({ name, description, message, photoUrl, timestamp }, ref) => {
     
     return (
         <div ref={ref} className="post">
@@ -25,6 +26,7 @@ const Post = forwardRef(({ name, description, message, photoUrl }, ref) => {
             
             <div className="post__body">
                 <p>{message}</p>
+                <p className="post__bodyDate">{new Date(timestamp.toDate()).toUTCString()}</p>
             </div>
 
             <div className="post__buttons">
