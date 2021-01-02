@@ -3,6 +3,18 @@
     margin: 0 20px;
 }
 
+@media(max-width: 800px){
+    .feed {
+        flex: .8;
+    }
+}
+
+@media(max-width: 600px){
+    .feed {
+        flex: 1;
+    }
+}
+
 .feed__inputContainer {
     background-color: white;
     padding: 10px;
@@ -39,5 +51,5 @@
 
 .feed__inputOptions {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }

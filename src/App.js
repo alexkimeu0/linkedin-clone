@@ -4,7 +4,7 @@ import { selectUser, login, logout } from './features/userSlice'
 
 import { auth } from './firebase'
 
-import { Header, Sidebar, Feed, Login } from './components'
+import { Header, Sidebar, Feed, Login, Widgets } from './components'
 
 import './App.css';
 
@@ -35,6 +35,7 @@ const App = () => {
         <div className="app__body">
           <Sidebar />
           <Feed />
+          <Widgets />
         </div>
       )}
     </div>

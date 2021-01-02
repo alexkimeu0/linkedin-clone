@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import FlipMove from 'react-flip-move'
+import { selectUser } from '../../features/userSlice'
+
 import firebase from 'firebase'
 import Post from './Post/Post'
 import { db } from '../../firebase'
@@ -16,6 +20,8 @@ import './Feed.css'
 const Feed = () => {
     const [posts, setPosts] = useState([])
     const [input, setInput] = useState('')
+
+    const user = useSelector(selectUser)
     
     useEffect(() => {
         db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => (
@@ -33,10 +39,10 @@ const Feed = () => {
         e.preventDefault()
         
         db.collection('posts').add({
-            name: 'Alex Kimeu',
-            description: "The hell",
+            name: user.displayName,
+            description: user.email,
             message: input, 
-            photoUrl: '',
+            photoUrl: user.photoUrl || '',
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         })
 
@@ -61,6 +67,7 @@ const Feed = () => {
                 </div>
             </div>  
             
+            <FlipMove>
             {posts.map(({id, data: { name, description, message, photoUrl }}) =>(
             <Post 
                 key={id}
@@ -68,7 +75,8 @@ const Feed = () => {
                 description={description} 
                 message={message} 
                 photoUrl={photoUrl}
-            />))}
+                />))}
+            </FlipMove>
             
         </div>
     )
