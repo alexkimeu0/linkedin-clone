@@ -1,4 +1,8 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectUser, logout } from '../../features/userSlice'
+import { auth } from '../../firebase'
+
 import { HeaderOption } from '../../components'
 import SearchIcon from '@material-ui/icons/Search'
 import HomeIcon from '@material-ui/icons/Home'
@@ -13,6 +17,14 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 import './Header.css'
 
 const Header = () => {
+    const user = useSelector(selectUser)
+    const dispatch = useDispatch()
+
+    const logoutOfApp = () => {
+        dispatch(logout())
+        auth.signOut()
+    }
+
     return (
         <div className="header">
             <div className="header__left">
@@ -20,7 +32,7 @@ const Header = () => {
 
                 <div className="header__search">
                     <SearchIcon />
-                    <input type="text" />
+                    <input type="text" placeholder="Search..." />
                 </div>
             </div>            
             <div className="header__right">
@@ -29,7 +41,12 @@ const Header = () => {
                 <HeaderOption Icon={BusinessCenterIcon} title="Jobs" />
                 <HeaderOption Icon={ChatIcon} title="Messaging" />
                 <HeaderOption Icon={NotificationsIcon} title="Notifications" />
-                <HeaderOption avatar="https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png" title="user" />
+                < HeaderOption 
+                    avatar="https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png" 
+                    title="user" 
+                    onClick={logoutOfApp}
+                />
+                
             </div>
         </div>
     )
