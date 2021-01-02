@@ -45,3 +45,7 @@
         display: none;
     }
 }
+
+.header__rightLogout {
+    display: flex;
+}

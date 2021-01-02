@@ -39,16 +39,16 @@ const Header = () => {
                 <HeaderOption Icon={HomeIcon } title="Home" />
                 <HeaderOption Icon={SupervisorAccountIcon} title="My Network" />
                 <HeaderOption Icon={BusinessCenterIcon} title="Jobs" />
-                <HeaderOption Icon={ChatIcon} title="Messaging" />
+                <HeaderOption Icon={ChatIcon} title="Messaging" />  
                 <HeaderOption Icon={NotificationsIcon} title="Notifications" />
+            </div>
+            <div className="header__rightLogout">
                 {user && <HeaderOption
                     avatar
                     title="me"
                     onClick={logoutOfApp}
-                />
-                }
-                
-            </div>
+                />}
+            </div>  
         </div>
     )
 }
