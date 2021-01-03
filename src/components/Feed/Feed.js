@@ -76,6 +76,7 @@ const Feed = () => {
                 message={message} 
                 timestamp={timestamp}
                 photoUrl={photoUrl}
+                id={id}
                 />))}
             </FlipMove>
             

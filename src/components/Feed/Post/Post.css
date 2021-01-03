@@ -33,7 +33,7 @@
 
 .post__bodyDate {
     font-size: small;
-    margin-top: 1rem;
+    margin-top: .5rem;
     color: gray;
 }
 
@@ -41,3 +41,5 @@
     display: flex;
     /* justify-content: space-between; */
 }
+
+

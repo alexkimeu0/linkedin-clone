@@ -45,6 +45,7 @@ const Header = () => {
             <div className="header__rightLogout">
                 {user && <HeaderOption
                     avatar
+                    src
                     title="me"
                     onClick={logoutOfApp}
                 />}
